@@ -64,17 +64,20 @@ for (i in t) {
 }
 # Statistical summary
 header <- c("transcriptome size", "mean cluster size", "mean seq length (full clusters)", "mean length variance", "mean % fraser", "mean % canaan", "mean % balsam")
-stat_v85 <- c(length(v85$ClustID), mean(v85$seqCount), mean(v85$avgLen), mean(as.numeric(v85$lenVariance), na.rm = TRUE), mean(v85$fraser), mean(v85$canaan), mean(v85$balsam))
-stat_v90 <- c(length(v90$ClustID), mean(v90$seqCount), mean(v90$avgLen), mean(as.numeric(v90$lenVariance), na.rm = TRUE), mean(v90$fraser), mean(v90$canaan), mean(v90$balsam))
-stat_v85_filt <- c(length(v85_filt$ClustID), mean(v85_filt$seqCount), mean(v85_filt$avgLen), mean(as.numeric(v85_filt$lenVariance), na.rm = TRUE), mean(v85_filt$fraser), mean(v85_filt$canaan), mean(v85_filt$balsam))
-stat_v90_filt <- c(length(v90_filt$ClustID), mean(v90_filt$seqCount), mean(v90_filt$avgLen), mean(as.numeric(v90_filt$lenVariance), na.rm = TRUE), mean(v90_filt$fraser), mean(v90_filt$canaan), mean(v90_filt$balsam))
-stat_o85 <- c(length(o85$ClustID), mean(o85$seqCount), mean(o85$avgLen), mean(as.numeric(o85$lenVariance), na.rm = TRUE), mean(o85$fraser), mean(o85$canaan), mean(o85$balsam))
-stat_o90 <- c(length(o90$ClustID), mean(o90$seqCount), mean(o90$avgLen), mean(as.numeric(o90$lenVariance), na.rm = TRUE), mean(o90$fraser), mean(o90$canaan), mean(o90$balsam))
-stat_o85_filt <- c(length(o85_filt$ClustID), mean(o85_filt$seqCount), mean(o85_filt$avgLen), mean(as.numeric(o85_filt$lenVariance), na.rm = TRUE), mean(o85_filt$fraser), mean(o85_filt$canaan), mean(o85_filt$balsam))
-stat_o90_filt <- c(length(o90_filt$ClustID), mean(o90_filt$seqCount), mean(o90_filt$avgLen), mean(as.numeric(o90_filt$lenVariance), na.rm = TRUE), mean(o90_filt$fraser), mean(o90_filt$canaan), mean(o90_filt$balsam))
+
+tns <- c(t, tfilt)
+tnsStats <- paste(tns, "_stats", sep="")
+
+
+idx = 1 
+for (i in tns) {
+  p <- get(i)
+  assign(tnsStats[idx], c(length(p$ClustID), mean(p$seqCount), mean(p$avgLen), mean(as.numeric(p$lenVariance), na.rm = TRUE), mean(p$fraser), mean(p$canaan), mean(p$balsam)))
+  idx <- idx + 1
+}
 
 # Build summary table
-vXstat <- as.data.frame(rbind(stat_v85, stat_v90, stat_o85, stat_o90, stat_v85_filt, stat_v90_filt, stat_o85_filt, stat_o90_filt))
+vXstat <- as.data.frame(rbind(v85_stats, v90_stats, o85_stats, o90_stats, v85_filt_stats, v90_filt_stats, o85_filt_stats, o90_filt_stats))
 colnames(vXstat) <- header
 rn <- c("vsearch85", "vsearch90", "orthofinder85", "orthofinder90")
 rn2 <- c(rn, paste(rn, "_filt", sep=""))
