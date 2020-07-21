@@ -1,1 +1,1 @@
-~[fir transcriptomics](img/fir-logo.png)
+![fir transcriptomics](img/fir-logo.png)
