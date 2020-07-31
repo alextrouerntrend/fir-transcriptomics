@@ -9,3 +9,4 @@ Files presented below represent pre and post-filtering transcriptomes derived fr
 There are several subdirectories:
 - [centroids](https://github.com/alextrouerntrend/fir-transcriptomics/tree/master/data/centroids): contain transcript headers for each transcriptome version
 - [transcriptome stats](https://github.com/alextrouerntrend/fir-transcriptomics/tree/master/data/transcriptome_stats): contain overview statistics for each transcript cluster, one cluster per row. This directory also contains the summary table, [tn_summary.csv](https://github.com/alextrouerntrend/fir-transcriptomics/blob/master/data/transcriptome_stats/tn_summary.csv)
+- [orthoinder](https://github.com/alextrouerntrend/fir-transcriptomics/tree/master/data/orthofinder): relevant files from orthofinder1 and orthofinder2 runs.
